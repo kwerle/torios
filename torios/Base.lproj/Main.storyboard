@@ -39,7 +39,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NwH-h2-dTe">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="48" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NwH-h2-dTe">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -69,11 +69,45 @@
                     <connections>
                         <outlet property="detailDescriptionLabel" destination="0XM-y9-sOw" id="deQ-Na-JPF"/>
                         <outlet property="tableView" destination="NwH-h2-dTe" id="7TT-nB-974"/>
+                        <segue destination="TW3-AR-sg7" kind="show" identifier="Show Item" id="A0F-tJ-2Fv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="709" y="129"/>
+        </scene>
+        <!--Item Display View Controller-->
+        <scene sceneID="eXh-Zi-j0P">
+            <objects>
+                <viewController id="TW3-AR-sg7" customClass="ItemDisplayViewController" customModule="torios" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="18S-b8-cQp"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZNx-se-uAB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eL6-kg-SZs">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZIV-wy-uqa">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZIV-wy-uqa" firstAttribute="bottom" secondItem="ZNx-se-uAB" secondAttribute="top" id="GI3-I6-KM7"/>
+                            <constraint firstItem="ZIV-wy-uqa" firstAttribute="leading" secondItem="eL6-kg-SZs" secondAttribute="leading" id="KPP-fM-wRs"/>
+                            <constraint firstItem="ZIV-wy-uqa" firstAttribute="top" secondItem="18S-b8-cQp" secondAttribute="bottom" id="baL-Aq-kUm"/>
+                            <constraint firstAttribute="trailing" secondItem="ZIV-wy-uqa" secondAttribute="trailing" id="dWd-IY-bRe"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="ZIV-wy-uqa" id="RJR-4M-9VP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Em3-Eb-bsc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1444" y="129"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">

@@ -10,6 +10,7 @@
 		1F340031B8E5980A3747E913 /* Pods_torios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A04E277BC011344657CD05D6 /* Pods_torios.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4522FE901BBE14AE00489E0D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522FE8F1BBE14AE00489E0D /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		4522FE921BBE429B00489E0D /* SubscriptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522FE911BBE429B00489E0D /* SubscriptionsController.swift */; settings = {ASSET_TAGS = (); }; };
+		453941EB1BBF0396009DFABD /* ItemDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453941EA1BBF0396009DFABD /* ItemDisplayViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		453C0CCA1BBDF60200F11827 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453C0CC91BBDF60200F11827 /* AppDelegate.swift */; };
 		453C0CCD1BBDF60200F11827 /* torios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 453C0CCB1BBDF60200F11827 /* torios.xcdatamodeld */; };
 		453C0CCF1BBDF60200F11827 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453C0CCE1BBDF60200F11827 /* MasterViewController.swift */; };
@@ -49,6 +50,7 @@
 		050534164E8EAB9005B5028D /* Pods-torios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-torios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-torios/Pods-torios.debug.xcconfig"; sourceTree = "<group>"; };
 		4522FE8F1BBE14AE00489E0D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4522FE911BBE429B00489E0D /* SubscriptionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsController.swift; sourceTree = "<group>"; };
+		453941EA1BBF0396009DFABD /* ItemDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDisplayViewController.swift; sourceTree = "<group>"; };
 		453C0CC61BBDF60200F11827 /* torios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = torios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		453C0CC91BBDF60200F11827 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		453C0CCC1BBDF60200F11827 /* torios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = torios.xcdatamodel; sourceTree = "<group>"; };
@@ -64,12 +66,12 @@
 		453C0CEA1BBDF60200F11827 /* toriosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = toriosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		453C0CEE1BBDF60200F11827 /* toriosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toriosUITests.swift; sourceTree = "<group>"; };
 		453C0CF01BBDF60200F11827 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		458DC1151BBE006700780EDF /* Subscription+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Subscription+CoreDataProperties.swift"; path = "torios/Subscription+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		458DC1161BBE006700780EDF /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Subscription.swift; path = torios/Subscription.swift; sourceTree = "<group>"; };
+		458DC1151BBE006700780EDF /* Subscription+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Subscription+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		458DC1161BBE006700780EDF /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		458DC1191BBE00C400780EDF /* UserSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		458DC11B1BBE016200780EDF /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
-		45A7F96C1BBE732E00A24321 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataProperties.swift"; path = "torios/Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		45A7F96D1BBE732E00A24321 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Item.swift; path = torios/Item.swift; sourceTree = "<group>"; };
+		45A7F96C1BBE732E00A24321 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		45A7F96D1BBE732E00A24321 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		45A7F9701BBE795100A24321 /* ItemsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsController.swift; sourceTree = "<group>"; };
 		88469A1D82E02ACD547F4F4E /* Pods-torios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-torios.release.xcconfig"; path = "Pods/Target Support Files/Pods-torios/Pods-torios.release.xcconfig"; sourceTree = "<group>"; };
 		A04E277BC011344657CD05D6 /* Pods_torios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_torios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,10 +115,6 @@
 		453C0CBD1BBDF60200F11827 = {
 			isa = PBXGroup;
 			children = (
-				45A7F96C1BBE732E00A24321 /* Item+CoreDataProperties.swift */,
-				45A7F96D1BBE732E00A24321 /* Item.swift */,
-				458DC1151BBE006700780EDF /* Subscription+CoreDataProperties.swift */,
-				458DC1161BBE006700780EDF /* Subscription.swift */,
 				453C0CC81BBDF60200F11827 /* torios */,
 				453C0CE21BBDF60200F11827 /* toriosTests */,
 				453C0CED1BBDF60200F11827 /* toriosUITests */,
@@ -139,6 +137,10 @@
 		453C0CC81BBDF60200F11827 /* torios */ = {
 			isa = PBXGroup;
 			children = (
+				45A7F96C1BBE732E00A24321 /* Item+CoreDataProperties.swift */,
+				45A7F96D1BBE732E00A24321 /* Item.swift */,
+				458DC1151BBE006700780EDF /* Subscription+CoreDataProperties.swift */,
+				458DC1161BBE006700780EDF /* Subscription.swift */,
 				453C0CC91BBDF60200F11827 /* AppDelegate.swift */,
 				458DC1191BBE00C400780EDF /* UserSession.swift */,
 				4522FE911BBE429B00489E0D /* SubscriptionsController.swift */,
@@ -177,6 +179,7 @@
 				453C0CD21BBDF60200F11827 /* Main.storyboard */,
 				453C0CCE1BBDF60200F11827 /* MasterViewController.swift */,
 				453C0CD01BBDF60200F11827 /* DetailViewController.swift */,
+				453941EA1BBF0396009DFABD /* ItemDisplayViewController.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				4522FE921BBE429B00489E0D /* SubscriptionsController.swift in Sources */,
 				458DC1181BBE006700780EDF /* Subscription.swift in Sources */,
 				45A7F9711BBE795100A24321 /* ItemsController.swift in Sources */,
+				453941EB1BBF0396009DFABD /* ItemDisplayViewController.swift in Sources */,
 				453C0CCA1BBDF60200F11827 /* AppDelegate.swift in Sources */,
 				458DC1171BBE006700780EDF /* Subscription+CoreDataProperties.swift in Sources */,
 				45A7F96E1BBE732E00A24321 /* Item+CoreDataProperties.swift in Sources */,

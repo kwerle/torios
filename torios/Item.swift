@@ -40,6 +40,7 @@ class Item: NSManagedObject {
         item.updatedTime = itemData.updatedTime
         item.summaryContent = itemData.summaryContent
         item.author = itemData.author
+        item.canonical = itemData.canonical
 //        item.likingUsersCount = itemData.likingUsersCount
         item.subscription = itemData.subscription
 

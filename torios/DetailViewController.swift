@@ -42,9 +42,20 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Dispose of any resources that can be recreated.
     }
 
+    // MARK: Events
+    
+    var selectedItem: Item?
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedItem = itemAtIndex(indexPath)
+        performSegueWithIdentifier("Show Item", sender: self)
+    }
     
     // MARK: UITableViewDataSource
 
+    func itemAtIndex(indexPath: NSIndexPath) -> Item {
+        return detailItem.items[indexPath.indexAtPosition(0)]
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if detailItem == nil {
             return 0
@@ -64,14 +75,24 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
         self.configureCell(cell, atIndexPath: indexPath)
         return cell
     }
     
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
-        let object = detailItem.items[indexPath.indexAtPosition(0)]
-        cell.textLabel!.text = object.valueForKey("title")!.description
+        let item = itemAtIndex(indexPath)
+        cell.textLabel!.text = item.title
     }
 
+    // MARK Segues
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        if segue.identifier == "Show Item" {
+            let vc = segue.destinationViewController as! ItemDisplayViewController
+            vc.item = self.selectedItem
+        }
+    }
 }
 

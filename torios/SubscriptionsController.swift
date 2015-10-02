@@ -63,7 +63,7 @@ class SubscriptionsController {
                     id: subscriptionJSON["id"].stringValue,
                     iconUrl: subscriptionJSON["iconUrl"].stringValue)
                 let s = Subscription.findOrCreate(moc: self.managedObjectContext, subscriptionData: subscriptionData)
-                NSLog("sub: \(s)")
+//                NSLog("sub: \(s)")
             }
             NSLog("saving subs")
             try! self.managedObjectContext.save()
@@ -92,6 +92,7 @@ class SubscriptionsController {
         Alamofire.request(.GET, url, headers: headers).validate().response { (request, response, data, error) -> Void in
             let json = JSON(data: data!)
             for (key,itemJSON):(String, JSON) in json["items"] {
+//                NSLog("itemJSON: \(itemJSON)")
                 if let subscription = Subscription.withId(moc: self.managedObjectContext, id: itemJSON["origin"]["streamId"].stringValue) {
                     let itemData = ItemData(
                         crawlTimeMsec: itemJSON["crawlTimeMsec"].stringValue,
@@ -101,7 +102,7 @@ class SubscriptionsController {
                         published: itemJSON["published"].numberValue,
                         updatedTime: itemJSON["updatedTime"].numberValue,
                         canonical: itemJSON["canonical"][0]["href"].stringValue,
-                        summaryContent: itemJSON["summaryContent"].stringValue,
+                        summaryContent: itemJSON["summary"]["content"].stringValue,
                         author: itemJSON["author"].stringValue,
                         subscription: subscription
                     )
