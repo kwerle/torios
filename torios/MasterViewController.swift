@@ -45,15 +45,17 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     var subscriptionController: SubscriptionsController!
     func initializeSubscriptionController() {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UserSession.loginSucceeded, object: nil)
-        self.tableView.beginUpdates()
-        subscriptionController = SubscriptionsController(managedObjectContext: self.fetchedResultsController.managedObjectContext)
-        do {
-            try self.managedObjectContext?.save() // will endUpdates on the tableview through the
-        } catch {
-            NSLog("error saving: \(error)")
-            abort()
+        if let moc = self.managedObjectContext {
+            self.tableView.beginUpdates()
+            subscriptionController = SubscriptionsController(managedObjectContext: moc)
+            do {
+                try moc.save() // will endUpdates on the tableview through the
+            } catch {
+                NSLog("error saving: \(error)")
+                abort()
+            }
+//            self.tableView.reloadData()
         }
-        self.tableView.reloadData()
 //        controllerDidChangeContent(self.fetchedResultsController)
     }
     
@@ -109,6 +111,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionInfo = self.fetchedResultsController.sections![section]
+        if sectionInfo.numberOfObjects > 0 {
+            NSLog("first one: \(self.fetchedResultsController.fetchedObjects![0])")
+        }
         return sectionInfo.numberOfObjects
     }
 
@@ -120,7 +125,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return true
+        return false
     }
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {

@@ -22,10 +22,10 @@ class SubscriptionsController {
     }
 
     init(managedObjectContext: NSManagedObjectContext) {
-//        managedObjectContext.performBlockAndWait({ () -> Void in
-//            self.fetchSubscriptions()
-//        })
-        self.fetchSubscriptions()
+        managedObjectContext.performBlockAndWait({ () -> Void in
+            self.fetchSubscriptions()
+        })
+//        self.fetchSubscriptions()
     }
 
     var headers: [String: String] {
@@ -62,10 +62,11 @@ class SubscriptionsController {
                     title: subscriptionJSON["title"].stringValue,
                     id: subscriptionJSON["id"].stringValue,
                     iconUrl: subscriptionJSON["iconUrl"].stringValue)
-                Subscription.findOrCreate(moc: self.managedObjectContext, subscriptionData: subscriptionData)
+                let s = Subscription.findOrCreate(moc: self.managedObjectContext, subscriptionData: subscriptionData)
+                NSLog("sub: \(s)")
             }
             NSLog("saving subs")
-//            try! self.managedObjectContext.save()
+            try! self.managedObjectContext.save()
 //            self.fetchUnreadItems()
         }
     }
@@ -104,7 +105,8 @@ class SubscriptionsController {
                         author: itemJSON["author"].stringValue,
                         subscription: subscription
                     )
-                    Item.findOrCreate(moc: self.managedObjectContext, itemData: itemData)
+                    let i = Item.findOrCreate(moc: self.managedObjectContext, itemData: itemData)
+                    NSLog("Item: \(i)")
                 }
 //                try! self.managedObjectContext.save()
             }
