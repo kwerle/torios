@@ -17,6 +17,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkAuthentication()
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
@@ -28,6 +29,14 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         }
     }
 
+    func checkAuthentication() {
+        if !UserSession.instance.authenticated {
+            let loginStory = UIStoryboard(name: "Login", bundle: nil)
+            let loginViewController = loginStory.instantiateInitialViewController()!
+            navigationController?.pushViewController(loginViewController, animated: false)
+        }
+    }
+    
     override func viewWillAppear(animated: Bool) {
         self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
         super.viewWillAppear(animated)

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F340031B8E5980A3747E913 /* Pods_torios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A04E277BC011344657CD05D6 /* Pods_torios.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		4522FE901BBE14AE00489E0D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522FE8F1BBE14AE00489E0D /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		453C0CCA1BBDF60200F11827 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453C0CC91BBDF60200F11827 /* AppDelegate.swift */; };
 		453C0CCD1BBDF60200F11827 /* torios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 453C0CCB1BBDF60200F11827 /* torios.xcdatamodeld */; };
 		453C0CCF1BBDF60200F11827 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453C0CCE1BBDF60200F11827 /* MasterViewController.swift */; };
@@ -40,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		050534164E8EAB9005B5028D /* Pods-torios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-torios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-torios/Pods-torios.debug.xcconfig"; sourceTree = "<group>"; };
+		4522FE8F1BBE14AE00489E0D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		453C0CC61BBDF60200F11827 /* torios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = torios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		453C0CC91BBDF60200F11827 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		453C0CCC1BBDF60200F11827 /* torios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = torios.xcdatamodel; sourceTree = "<group>"; };
@@ -59,6 +63,8 @@
 		458DC1161BBE006700780EDF /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Subscription.swift; path = torios/Subscription.swift; sourceTree = "<group>"; };
 		458DC1191BBE00C400780EDF /* UserSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		458DC11B1BBE016200780EDF /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		88469A1D82E02ACD547F4F4E /* Pods-torios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-torios.release.xcconfig"; path = "Pods/Target Support Files/Pods-torios/Pods-torios.release.xcconfig"; sourceTree = "<group>"; };
+		A04E277BC011344657CD05D6 /* Pods_torios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_torios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F340031B8E5980A3747E913 /* Pods_torios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +93,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4522FE8E1BBE149000489E0D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				458DC11B1BBE016200780EDF /* Login.storyboard */,
+				4522FE8F1BBE14AE00489E0D /* LoginViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 		453C0CBD1BBDF60200F11827 = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +111,8 @@
 				453C0CE21BBDF60200F11827 /* toriosTests */,
 				453C0CED1BBDF60200F11827 /* toriosUITests */,
 				453C0CC71BBDF60200F11827 /* Products */,
+				A50631436EFF592B363D3E9D /* Pods */,
+				D600488F20C4208AF41588A0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,7 +132,7 @@
 				453C0CC91BBDF60200F11827 /* AppDelegate.swift */,
 				458DC1191BBE00C400780EDF /* UserSession.swift */,
 				458DC11D1BBE017500780EDF /* Main */,
-				458DC11B1BBE016200780EDF /* Login.storyboard */,
+				4522FE8E1BBE149000489E0D /* Login */,
 				453C0CD51BBDF60200F11827 /* Assets.xcassets */,
 				453C0CD71BBDF60200F11827 /* LaunchScreen.storyboard */,
 				453C0CDA1BBDF60200F11827 /* Info.plist */,
@@ -151,6 +169,23 @@
 			name = Main;
 			sourceTree = "<group>";
 		};
+		A50631436EFF592B363D3E9D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				050534164E8EAB9005B5028D /* Pods-torios.debug.xcconfig */,
+				88469A1D82E02ACD547F4F4E /* Pods-torios.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D600488F20C4208AF41588A0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A04E277BC011344657CD05D6 /* Pods_torios.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -158,9 +193,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 453C0CF31BBDF60200F11827 /* Build configuration list for PBXNativeTarget "torios" */;
 			buildPhases = (
+				DFD5473E92DDF15317C3F88B /* Check Pods Manifest.lock */,
 				453C0CC21BBDF60200F11827 /* Sources */,
 				453C0CC31BBDF60200F11827 /* Frameworks */,
 				453C0CC41BBDF60200F11827 /* Resources */,
+				A998B58CC97E99306E58EF5A /* Embed Pods Frameworks */,
+				599F4A5E3C5356F9222ADA3D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -277,6 +315,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		599F4A5E3C5356F9222ADA3D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-torios/Pods-torios-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A998B58CC97E99306E58EF5A /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-torios/Pods-torios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DFD5473E92DDF15317C3F88B /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		453C0CC21BBDF60200F11827 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -286,6 +372,7 @@
 				453C0CCA1BBDF60200F11827 /* AppDelegate.swift in Sources */,
 				458DC1171BBE006700780EDF /* Subscription+CoreDataProperties.swift in Sources */,
 				458DC11A1BBE00C400780EDF /* UserSession.swift in Sources */,
+				4522FE901BBE14AE00489E0D /* LoginViewController.swift in Sources */,
 				453C0CCD1BBDF60200F11827 /* torios.xcdatamodeld in Sources */,
 				453C0CCF1BBDF60200F11827 /* MasterViewController.swift in Sources */,
 				453C0CD11BBDF60200F11827 /* DetailViewController.swift in Sources */,
@@ -428,6 +515,7 @@
 		};
 		453C0CF41BBDF60200F11827 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 050534164E8EAB9005B5028D /* Pods-torios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = torios/Info.plist;
@@ -439,6 +527,7 @@
 		};
 		453C0CF51BBDF60200F11827 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 88469A1D82E02ACD547F4F4E /* Pods-torios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = torios/Info.plist;
