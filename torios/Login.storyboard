@@ -32,7 +32,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
-                                    <action selector="login" destination="Nm5-Ra-8M4" eventType="editingDidEnd" id="DJA-iT-lAq"/>
+                                    <action selector="login" destination="Nm5-Ra-8M4" eventType="primaryActionTriggered" id="Ji2-Y9-t0d"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in to The Old Reader" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tmL-eX-Npp">
@@ -45,7 +45,7 @@
                                 <rect key="frame" x="281" y="323" width="38" height="30"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
-                                    <action selector="login:" destination="Nm5-Ra-8M4" eventType="touchUpInside" id="LOz-TL-ydT"/>
+                                    <action selector="login" destination="Nm5-Ra-8M4" eventType="touchUpInside" id="8Cw-xd-Y3P"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -71,6 +71,7 @@
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="rPN-TM-Qht" id="bkc-9S-ZxN"/>
+                        <outlet property="loginButton" destination="Khb-nj-XiN" id="hXU-6B-Qeh"/>
                         <outlet property="passwordTextField" destination="qNL-49-7WJ" id="EvB-jU-AW4"/>
                     </connections>
                 </viewController>

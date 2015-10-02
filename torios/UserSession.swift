@@ -9,18 +9,29 @@
 import Foundation
 
 import Alamofire
+import Locksmith
 
 var _instance: UserSession?
 
 class UserSession {
-    var userName: String?
-    var password: String?
-    var authToken: String?
-    var oldReaderURLs: OldReaderURLs!
-    var authenticated = false
     
+    var account: accountData
+    
+    var authToken: String!
+    var oldReaderURLs: OldReaderURLs!
+    var authenticated: Bool {
+        get {
+            return authToken != nil
+        }
+    }
+    
+    static let loginSucceeded = "loginSucceeded"
+    static let loginFailed = "loginFailed"
+
     init(urls: OldReaderURLs) {
         oldReaderURLs = urls
+        account = accountData(userName: "", password: "")
+        account.readFromSecureStore()
         _instance = self
     }
     
@@ -39,9 +50,17 @@ class UserSession {
         }
     }
     
+    func storeAuthInfo(name: String, pass: String) {
+        let account = accountData(userName: name, password: pass)
+        do {
+            try account.createInSecureStore()
+        } catch  {
+            NSLog("Failed to store in keychain \(name) \(pass)")
+        }
+    }
+    
     func login(name: String, pass: String) {
-        userName = name
-        password = pass
+        storeAuthInfo(name, pass: pass)
         //        curl -d "client=YourAppName&accountType=HOSTED_OR_GOOGLE&service=reader&Email=test@krasnoukhov.com&Passwd=..." https://theoldreader.com/accounts/ClientLogin
         let args = [
             "client": "torios",
@@ -50,20 +69,38 @@ class UserSession {
             "Email": name,
             "Passwd": pass
         ]
-//        let args = "client=torios&accountType=hosted&service=reader&Email=\(name)&Passwd=\(pass)"
 
-        Alamofire.request(.POST, oldReaderURLs.login, parameters: args).validate().responseJSON { (request, response, json) -> Void in
-            NSLog("request: \(request)")
-            NSLog("response: \(response)")
-            NSLog("json: \(json)")
-            
+        Alamofire.request(.POST, oldReaderURLs.login, parameters: args).validate().response { (request, response, responseData, error) -> Void in
+            if response?.statusCode == 200 {
+                let keyString = String.init(data: responseData!, encoding: NSUTF8StringEncoding)!
+                let keyStart = keyString.rangeOfString("Auth=")?.endIndex
+                let key = keyString.substringFromIndex(keyStart!)
+                
+                self.authToken = "Authorization: GoogleLogin auth=\(key)"
+                NSNotificationCenter.defaultCenter().postNotificationName(UserSession.loginSucceeded, object: self)
+            } else {
+                NSNotificationCenter.defaultCenter().postNotificationName(UserSession.loginFailed, object: self)
+            }
         }
     }
     
 }
 
+struct accountData: ReadableSecureStorable, CreateableSecureStorable, GenericPasswordSecureStorable {
+    let userName: String
+    let password: String
+    
+    // Required by GenericPasswordSecureStorable
+    let service = "TheOldReader"
+    var account: String { return userName }
+    
+    // Required by CreateableSecureStorable
+    var data: [String: AnyObject] {
+        return ["password": password]
+    }
+}
+
 struct OldReaderURLs {
-    //    curl -d "client=YourAppName&accountType=HOSTED_OR_GOOGLE&service=reader&Email=test@krasnoukhov.com&Passwd=..." https://theoldreader.com/accounts/ClientLogin
     let login = "https://theoldreader.com/accounts/ClientLogin"
     
 }

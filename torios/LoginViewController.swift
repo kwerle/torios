@@ -12,11 +12,32 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        initUserSession()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        emailTextField.text = UserSession.instance.account.userName
+        passwordTextField.text = UserSession.instance.account.password
+    }
+    
+    func initUserSession() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loggedIn", name: UserSession.loginSucceeded, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loginFailed", name: UserSession.loginFailed, object: nil)
+    }
+    
+    func loggedIn() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func loginFailed() {
+        emailTextField.enabled = true
+        passwordTextField.enabled = true
+        loginButton.enabled = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,6 +46,10 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func login() {
+        emailTextField.enabled = false
+        passwordTextField.enabled = false
+        loginButton.enabled = false
+        
         if let name = emailTextField.text, pass = passwordTextField.text {
             UserSession.instance.login(name, pass: pass)
         }

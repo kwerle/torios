@@ -17,7 +17,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkAuthentication()
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
@@ -29,12 +28,26 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         }
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        checkAuthentication()
+    }
+    
     func checkAuthentication() {
         if !UserSession.instance.authenticated {
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "initializeSubscriptionController", name: UserSession.loginSucceeded, object: nil)
             let loginStory = UIStoryboard(name: "Login", bundle: nil)
             let loginViewController = loginStory.instantiateInitialViewController()!
-            navigationController?.pushViewController(loginViewController, animated: false)
+//            navigationController?.pushViewController(loginViewController, animated: false)
+            self.presentViewController(loginViewController, animated: false, completion: nil)
+        } else {
+            initializeSubscriptionController()
         }
+    }
+    
+    var subscriptionController: SubscriptionController!
+    func initializeSubscriptionController() {
+        subscriptionController = SubscriptionController(session: UserSession.instance)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -121,7 +134,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         let object = self.fetchedResultsController.objectAtIndexPath(indexPath)
-        cell.textLabel!.text = object.valueForKey("timeStamp")!.description
+        cell.textLabel!.text = object.valueForKey("title")!.description
     }
 
     // MARK: - Fetched results controller
@@ -133,7 +146,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         let fetchRequest = NSFetchRequest()
         // Edit the entity name as appropriate.
-        let entity = NSEntityDescription.entityForName("Event", inManagedObjectContext: self.managedObjectContext!)
+        let entity = NSEntityDescription.entityForName("Subscription", inManagedObjectContext: self.managedObjectContext!)
         fetchRequest.entity = entity
         
         // Set the batch size to a suitable number.
@@ -155,7 +168,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         } catch {
              // Replace this implementation with code to handle the error appropriately.
              // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-             //print("Unresolved error \(error), \(error.userInfo)")
+             print("Unresolved error")
              abort()
         }
         
