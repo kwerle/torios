@@ -49,14 +49,12 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             self.tableView.beginUpdates()
             subscriptionController = SubscriptionsController(managedObjectContext: moc)
             do {
-                try moc.save() // will endUpdates on the tableview through the
+                try moc.save() // will endUpdates on the tableview through the fetchmanager and delegate chain
             } catch {
                 NSLog("error saving: \(error)")
                 abort()
             }
-//            self.tableView.reloadData()
         }
-//        controllerDidChangeContent(self.fetchedResultsController)
     }
     
     override func viewWillAppear(animated: Bool) {

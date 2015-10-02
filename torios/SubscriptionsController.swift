@@ -107,7 +107,7 @@ class SubscriptionsController {
                         subscription: subscription
                     )
                     let i = Item.findOrCreate(moc: self.managedObjectContext, itemData: itemData)
-                    NSLog("Item: \(i)")
+//                    NSLog("Item: \(i)")
                 }
 //                try! self.managedObjectContext.save()
             }
