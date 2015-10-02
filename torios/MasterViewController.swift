@@ -111,9 +111,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionInfo = self.fetchedResultsController.sections![section]
-        if sectionInfo.numberOfObjects > 0 {
-            NSLog("first one: \(self.fetchedResultsController.fetchedObjects![0])")
-        }
+//        if sectionInfo.numberOfObjects > 0 {
+////            NSLog("first one: \(self.fetchedResultsController.fetchedObjects![0])")
+//        }
         return sectionInfo.numberOfObjects
     }
 
@@ -165,7 +165,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         fetchRequest.fetchBatchSize = 20
         
         // Edit the sort key as appropriate.
-        let sortDescriptor = NSSortDescriptor(key: "timeStamp", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "id", ascending: false)
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
