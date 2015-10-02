@@ -20,8 +20,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
-        self.navigationItem.rightBarButtonItem = addButton
+        self.tableView.dataSource = nil
+//        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
+//        self.navigationItem.rightBarButtonItem = addButton
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
@@ -46,14 +47,20 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     func initializeSubscriptionController() {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UserSession.loginSucceeded, object: nil)
         if let moc = self.managedObjectContext {
-            self.tableView.beginUpdates()
+//            self.tableView.beginUpdates()
             subscriptionController = SubscriptionsController(managedObjectContext: moc)
-            do {
-                try moc.save() // will endUpdates on the tableview through the fetchmanager and delegate chain
-            } catch {
-                NSLog("error saving: \(error)")
-                abort()
+            moc.performBlockAndWait() { () -> Void in
+                do {
+                    try moc.save() // will endUpdates on the tableview through the fetchmanager and delegate chain
+                } catch {
+                    NSLog("error saving: \(error)")
+                    abort()
+                }
             }
+            NSFetchedResultsController.deleteCacheWithName("Master")
+            self.tableView.dataSource = self
+//            self.tableView.reloadData()
+//            self.tableView.beginUpdates()
         }
     }
     
@@ -104,14 +111,19 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     // MARK: - Table View
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return self.fetchedResultsController.sections?.count ?? 0
+//        return self.fetchedResultsController.sections?.count ?? 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if !UserSession.instance.authenticated {
+            return 0
+        }
         let sectionInfo = self.fetchedResultsController.sections![section]
 //        if sectionInfo.numberOfObjects > 0 {
 ////            NSLog("first one: \(self.fetchedResultsController.fetchedObjects![0])")
 //        }
+        NSLog("sectionInfo.numberOfObjects: \(sectionInfo.numberOfObjects)")
         return sectionInfo.numberOfObjects
     }
 
