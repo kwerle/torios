@@ -67,7 +67,23 @@ class SubscriptionsController {
             }
             NSLog("saving subs")
             try! self.managedObjectContext.save()
+            self.fetchCounts()
             self.fetchUnreadItems()
+        }
+    }
+    
+    func fetchCounts() {
+        let url = "https://theoldreader.com/reader/api/0/unread-count?output=json"
+        
+        Alamofire.request(.GET, url, headers: headers).validate().response { (request, response, data, error) -> Void in
+            let json = JSON(data: data!)
+            for (key,countJSON):(String, JSON) in json["unreadcounts"] {
+//                NSLog("itemJSON: \(countJSON)")
+                if let subscription = Subscription.withId(moc: self.managedObjectContext, id: countJSON["id"].stringValue) {
+                    subscription.unreadCount = countJSON["count"].numberValue
+                    try! self.managedObjectContext.save()
+                }
+            }
         }
     }
 
