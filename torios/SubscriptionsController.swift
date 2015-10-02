@@ -123,7 +123,10 @@ class SubscriptionsController {
                         subscription: subscription
                     )
                     let i = Item.findOrCreate(moc: self.managedObjectContext, itemData: itemData)
-//                    NSLog("Item: \(i)")
+//                    NSLog("Item: \(i.title) for \(i.subscription!.title)")
+                } else {
+                    let key = itemJSON["origin"]["streamId"]
+                    NSLog("Could not find sub for \(key)")
                 }
 //                try! self.managedObjectContext.save()
             }
