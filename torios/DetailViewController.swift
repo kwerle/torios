@@ -53,14 +53,14 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: UITableViewDataSource
 
     func itemAtIndex(indexPath: NSIndexPath) -> Item {
-        return detailItem.items[indexPath.indexAtPosition(indexPath.length - 1)]
+        return detailItem.items!.objectAtIndex(indexPath.indexAtPosition(indexPath.length - 1)) as! Item
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if detailItem == nil {
             return 0
         }
-        return detailItem.items.count
+        return detailItem.items?.count ?? 0
     }
     
     var _cell: UITableViewCell!
