@@ -22,6 +22,6 @@ extension Subscription {
     @NSManaged var url: String
     @NSManaged var htmlUrl: String
     @NSManaged var iconUrl: String
-//    @NSManaged var items: [Item]
+    @NSManaged var items: [Item]
 
 }

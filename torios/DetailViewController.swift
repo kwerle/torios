@@ -8,12 +8,13 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
 
 
-    var detailItem: AnyObject? {
+    var detailItem: Subscription! {
         didSet {
             // Update the view.
             self.configureView()
@@ -26,6 +27,7 @@ class DetailViewController: UIViewController {
             if let label = self.detailDescriptionLabel {
                 label.text = detail.valueForKey("title")!.description
             }
+//            tableView.reloadData()
         }
     }
 
@@ -40,6 +42,36 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    
+    // MARK: UITableViewDataSource
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if detailItem == nil {
+            return 0
+        }
+        return detailItem.items.count
+    }
+    
+    var _cell: UITableViewCell!
+    var cell: UITableViewCell {
+        get {
+            if _cell != nil {
+                return _cell
+            }
+            _cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
+            return _cell
+        }
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        self.configureCell(cell, atIndexPath: indexPath)
+        return cell
+    }
+    
+    func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+        let object = detailItem.items[indexPath.indexAtPosition(0)]
+        cell.textLabel!.text = object.valueForKey("title")!.description
+    }
 
 }
 

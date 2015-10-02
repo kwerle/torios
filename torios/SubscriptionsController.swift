@@ -67,7 +67,7 @@ class SubscriptionsController {
             }
             NSLog("saving subs")
             try! self.managedObjectContext.save()
-//            self.fetchUnreadItems()
+            self.fetchUnreadItems()
         }
     }
 
