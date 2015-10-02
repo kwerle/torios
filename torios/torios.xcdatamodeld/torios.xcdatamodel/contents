@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="14F27" minimumToolsVersion="Automatic">
-    <entity name="Subscription">
-        <attribute name="firstitemmsec" optional="YES" syncable="YES"/>
-        <attribute name="htmlUrl" optional="YES" syncable="YES"/>
-        <attribute name="iconUrl" optional="YES" syncable="YES"/>
-        <attribute name="id" optional="YES" syncable="YES"/>
-        <attribute name="sortid" optional="YES" syncable="YES"/>
+    <entity name="Subscription" representedClassName=".Subscription">
+        <attribute name="firstitemmsec" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="htmlUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iconUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sortid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timeStamp" optional="YES" attributeType="Date">
             <userInfo/>
         </attribute>
-        <attribute name="title" optional="YES" syncable="YES"/>
-        <attribute name="url" optional="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <userInfo/>
     </entity>
     <elements>
