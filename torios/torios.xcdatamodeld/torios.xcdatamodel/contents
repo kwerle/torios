@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="14F27" minimumToolsVersion="Automatic">
+    <entity name="Item" representedClassName=".Item" syncable="YES">
+        <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="canonical" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="crawlTimeMsec" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="published" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="summaryContent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timestampUsec" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedTime" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="subscription" optional="YES" maxCount="1" deletionRule="Nullify" ordered="YES" destinationEntity="Subscription" inverseName="items" inverseEntity="Subscription" syncable="YES"/>
+    </entity>
     <entity name="Subscription" representedClassName=".Subscription">
         <attribute name="firstitemmsec" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="htmlUrl" optional="YES" attributeType="String" syncable="YES"/>
@@ -12,9 +24,11 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="unread" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Item" inverseName="subscription" inverseEntity="Item" syncable="YES"/>
         <userInfo/>
     </entity>
     <elements>
-        <element name="Subscription" positionX="261" positionY="189" width="128" height="180"/>
+        <element name="Subscription" positionX="-218" positionY="261" width="128" height="193"/>
+        <element name="Item" positionX="-18" positionY="261" width="128" height="193"/>
     </elements>
 </model>

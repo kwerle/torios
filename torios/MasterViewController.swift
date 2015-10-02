@@ -38,16 +38,23 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "initializeSubscriptionController", name: UserSession.loginSucceeded, object: nil)
             let loginStory = UIStoryboard(name: "Login", bundle: nil)
             let loginViewController = loginStory.instantiateInitialViewController()!
-//            navigationController?.pushViewController(loginViewController, animated: false)
             self.presentViewController(loginViewController, animated: false, completion: nil)
-        } else {
-            initializeSubscriptionController()
         }
     }
     
-    var subscriptionController: SubscriptionController!
+    var subscriptionController: SubscriptionsController!
     func initializeSubscriptionController() {
-        subscriptionController = SubscriptionController(session: UserSession.instance)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UserSession.loginSucceeded, object: nil)
+        self.tableView.beginUpdates()
+        subscriptionController = SubscriptionsController(managedObjectContext: self.fetchedResultsController.managedObjectContext)
+        do {
+            try self.managedObjectContext?.save() // will endUpdates on the tableview through the
+        } catch {
+            NSLog("error saving: \(error)")
+            abort()
+        }
+        self.tableView.reloadData()
+//        controllerDidChangeContent(self.fetchedResultsController)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -75,7 +82,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         } catch {
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            //print("Unresolved error \(error), \(error.userInfo)")
+            print("Unresolved error \(error)")
             abort()
         }
     }
@@ -192,7 +199,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
 
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-        switch type {
+        if indexPath != nil && tableView.cellForRowAtIndexPath(indexPath!) != nil {
+            switch type {
             case .Insert:
                 tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
             case .Delete:
@@ -202,6 +210,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             case .Move:
                 tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
                 tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+            }
         }
     }
 

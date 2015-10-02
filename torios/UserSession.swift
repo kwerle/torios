@@ -55,7 +55,7 @@ class UserSession {
         do {
             try account.createInSecureStore()
         } catch  {
-            NSLog("Failed to store in keychain \(name) \(pass)")
+            NSLog("Failed to store in keychain \(name) \(pass) becaues \(error)")
         }
     }
     

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1F340031B8E5980A3747E913 /* Pods_torios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A04E277BC011344657CD05D6 /* Pods_torios.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4522FE901BBE14AE00489E0D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522FE8F1BBE14AE00489E0D /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		4522FE921BBE429B00489E0D /* SubscriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522FE911BBE429B00489E0D /* SubscriptionController.swift */; settings = {ASSET_TAGS = (); }; };
+		4522FE921BBE429B00489E0D /* SubscriptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4522FE911BBE429B00489E0D /* SubscriptionsController.swift */; settings = {ASSET_TAGS = (); }; };
 		453C0CCA1BBDF60200F11827 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453C0CC91BBDF60200F11827 /* AppDelegate.swift */; };
 		453C0CCD1BBDF60200F11827 /* torios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 453C0CCB1BBDF60200F11827 /* torios.xcdatamodeld */; };
 		453C0CCF1BBDF60200F11827 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453C0CCE1BBDF60200F11827 /* MasterViewController.swift */; };
@@ -23,6 +23,9 @@
 		458DC1181BBE006700780EDF /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458DC1161BBE006700780EDF /* Subscription.swift */; settings = {ASSET_TAGS = (); }; };
 		458DC11A1BBE00C400780EDF /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458DC1191BBE00C400780EDF /* UserSession.swift */; settings = {ASSET_TAGS = (); }; };
 		458DC11C1BBE016200780EDF /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 458DC11B1BBE016200780EDF /* Login.storyboard */; settings = {ASSET_TAGS = (); }; };
+		45A7F96E1BBE732E00A24321 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A7F96C1BBE732E00A24321 /* Item+CoreDataProperties.swift */; settings = {ASSET_TAGS = (); }; };
+		45A7F96F1BBE732E00A24321 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A7F96D1BBE732E00A24321 /* Item.swift */; settings = {ASSET_TAGS = (); }; };
+		45A7F9711BBE795100A24321 /* ItemsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A7F9701BBE795100A24321 /* ItemsController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,9 +48,7 @@
 /* Begin PBXFileReference section */
 		050534164E8EAB9005B5028D /* Pods-torios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-torios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-torios/Pods-torios.debug.xcconfig"; sourceTree = "<group>"; };
 		4522FE8F1BBE14AE00489E0D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		4522FE911BBE429B00489E0D /* SubscriptionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionController.swift; sourceTree = "<group>"; };
-		4522FE931BBE5EA400489E0D /* torios 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "torios 2.xcdatamodel"; sourceTree = "<group>"; };
-		4522FE941BBE601900489E0D /* torios 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "torios 3.xcdatamodel"; sourceTree = "<group>"; };
+		4522FE911BBE429B00489E0D /* SubscriptionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsController.swift; sourceTree = "<group>"; };
 		453C0CC61BBDF60200F11827 /* torios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = torios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		453C0CC91BBDF60200F11827 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		453C0CCC1BBDF60200F11827 /* torios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = torios.xcdatamodel; sourceTree = "<group>"; };
@@ -67,6 +68,9 @@
 		458DC1161BBE006700780EDF /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Subscription.swift; path = torios/Subscription.swift; sourceTree = "<group>"; };
 		458DC1191BBE00C400780EDF /* UserSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		458DC11B1BBE016200780EDF /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		45A7F96C1BBE732E00A24321 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataProperties.swift"; path = "torios/Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		45A7F96D1BBE732E00A24321 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Item.swift; path = torios/Item.swift; sourceTree = "<group>"; };
+		45A7F9701BBE795100A24321 /* ItemsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsController.swift; sourceTree = "<group>"; };
 		88469A1D82E02ACD547F4F4E /* Pods-torios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-torios.release.xcconfig"; path = "Pods/Target Support Files/Pods-torios/Pods-torios.release.xcconfig"; sourceTree = "<group>"; };
 		A04E277BC011344657CD05D6 /* Pods_torios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_torios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -109,6 +113,8 @@
 		453C0CBD1BBDF60200F11827 = {
 			isa = PBXGroup;
 			children = (
+				45A7F96C1BBE732E00A24321 /* Item+CoreDataProperties.swift */,
+				45A7F96D1BBE732E00A24321 /* Item.swift */,
 				458DC1151BBE006700780EDF /* Subscription+CoreDataProperties.swift */,
 				458DC1161BBE006700780EDF /* Subscription.swift */,
 				453C0CC81BBDF60200F11827 /* torios */,
@@ -135,7 +141,8 @@
 			children = (
 				453C0CC91BBDF60200F11827 /* AppDelegate.swift */,
 				458DC1191BBE00C400780EDF /* UserSession.swift */,
-				4522FE911BBE429B00489E0D /* SubscriptionController.swift */,
+				4522FE911BBE429B00489E0D /* SubscriptionsController.swift */,
+				45A7F9701BBE795100A24321 /* ItemsController.swift */,
 				458DC11D1BBE017500780EDF /* Main */,
 				4522FE8E1BBE149000489E0D /* Login */,
 				453C0CD51BBDF60200F11827 /* Assets.xcassets */,
@@ -373,11 +380,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4522FE921BBE429B00489E0D /* SubscriptionController.swift in Sources */,
+				4522FE921BBE429B00489E0D /* SubscriptionsController.swift in Sources */,
 				458DC1181BBE006700780EDF /* Subscription.swift in Sources */,
+				45A7F9711BBE795100A24321 /* ItemsController.swift in Sources */,
 				453C0CCA1BBDF60200F11827 /* AppDelegate.swift in Sources */,
 				458DC1171BBE006700780EDF /* Subscription+CoreDataProperties.swift in Sources */,
+				45A7F96E1BBE732E00A24321 /* Item+CoreDataProperties.swift in Sources */,
 				458DC11A1BBE00C400780EDF /* UserSession.swift in Sources */,
+				45A7F96F1BBE732E00A24321 /* Item.swift in Sources */,
 				4522FE901BBE14AE00489E0D /* LoginViewController.swift in Sources */,
 				453C0CCD1BBDF60200F11827 /* torios.xcdatamodeld in Sources */,
 				453C0CCF1BBDF60200F11827 /* MasterViewController.swift in Sources */,
@@ -636,8 +646,6 @@
 		453C0CCB1BBDF60200F11827 /* torios.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				4522FE941BBE601900489E0D /* torios 3.xcdatamodel */,
-				4522FE931BBE5EA400489E0D /* torios 2.xcdatamodel */,
 				453C0CCC1BBDF60200F11827 /* torios.xcdatamodel */,
 			);
 			currentVersion = 453C0CCC1BBDF60200F11827 /* torios.xcdatamodel */;
