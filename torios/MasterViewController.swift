@@ -120,10 +120,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             return 0
         }
         let sectionInfo = self.fetchedResultsController.sections![section]
-//        if sectionInfo.numberOfObjects > 0 {
-////            NSLog("first one: \(self.fetchedResultsController.fetchedObjects![0])")
-//        }
-        NSLog("sectionInfo.numberOfObjects: \(sectionInfo.numberOfObjects)")
+//        NSLog("sectionInfo.numberOfObjects: \(sectionInfo.numberOfObjects)")
         return sectionInfo.numberOfObjects
     }
 

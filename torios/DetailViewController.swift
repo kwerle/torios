@@ -53,7 +53,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: UITableViewDataSource
 
     func itemAtIndex(indexPath: NSIndexPath) -> Item {
-        return detailItem.items[indexPath.indexAtPosition(0)]
+        return detailItem.items[indexPath.indexAtPosition(indexPath.length - 1)]
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -75,9 +75,9 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        self.configureCell(cell, atIndexPath: indexPath)
-        return cell
+        let c = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) ?? cell
+        self.configureCell(c, atIndexPath: indexPath)
+        return c
     }
     
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
