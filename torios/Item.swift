@@ -9,7 +9,11 @@
 import Foundation
 import CoreData
 
+let updateQueue = NSOperationQueue()
+
 class Item: NSManagedObject {
+    
+    var updating = false
 
     class func withId(moc moc: NSManagedObjectContext, id: String) -> Item? {
         let fetchRequest = NSFetchRequest(entityName: "Item")
@@ -47,8 +51,21 @@ class Item: NSManagedObject {
 //        try! moc.save()
         return item
     }
-
-
+    
+    override func didChangeValueForKey(key: String) {
+        switch key {
+        case "read":
+            checkUpdate()
+        default:
+            break
+        }
+    }
+    
+    private func checkUpdate() {
+        updateQueue.addOperationWithBlock() { () -> Void in
+//            <#code#>
+        }
+    }
 }
 
 struct ItemData {

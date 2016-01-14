@@ -2,7 +2,7 @@
 //  Item+CoreDataProperties.swift
 //  
 //
-//  Created by Kurt Werle on 10/2/15.
+//  Created by Kurt Werle on 10/7/15.
 //
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -23,6 +23,8 @@ extension Item {
     @NSManaged var timestampUsec: String?
     @NSManaged var title: String?
     @NSManaged var updatedTime: NSNumber?
+    @NSManaged var read: NSNumber?
+    @NSManaged var needsUpdate: NSNumber?
     @NSManaged var subscription: Subscription?
 
 }

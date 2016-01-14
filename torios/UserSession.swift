@@ -15,7 +15,7 @@ var _instance: UserSession?
 
 class UserSession {
     
-    var account: accountData
+    var account: AccountData
     
     var authToken: String!
     var oldReaderURLs: OldReaderURLs!
@@ -30,7 +30,7 @@ class UserSession {
 
     init(urls: OldReaderURLs) {
         oldReaderURLs = urls
-        account = accountData(userName: "", password: "")
+        account = AccountData(userName: "", password: "")
         account.readFromSecureStore()
         _instance = self
     }
@@ -51,7 +51,7 @@ class UserSession {
     }
     
     func storeAuthInfo(name: String, pass: String) {
-        let account = accountData(userName: name, password: pass)
+        let account = AccountData(userName: name, password: pass)
         do {
             try account.createInSecureStore()
         } catch  {
@@ -86,7 +86,7 @@ class UserSession {
     
 }
 
-struct accountData: ReadableSecureStorable, CreateableSecureStorable, GenericPasswordSecureStorable {
+struct AccountData: ReadableSecureStorable, CreateableSecureStorable, GenericPasswordSecureStorable {
     let userName: String
     let password: String
     

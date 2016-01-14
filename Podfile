@@ -2,10 +2,11 @@
 platform :ios, '8.0'
 use_frameworks!
 
+pod 'Alamofire'
+pod 'SSKeychain'
+pod 'SwiftyJSON' #, :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+
 target 'torios' do
-  pod 'Alamofire'
-  pod 'Locksmith'
-  pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 end
 
 target 'toriosTests' do
