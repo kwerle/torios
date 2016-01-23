@@ -8,18 +8,36 @@
 
 import UIKit
 
+import CoreData
+
 class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
 
-
     var detailItem: Subscription! {
         didSet {
+            
+            if let moc = detailItem.managedObjectContext {
+//                let entity = NSEntityDescription.entityForName("Item", inManagedObjectContext: moc)
+                let fetchRequest = NSFetchRequest(entityName: "Item")
+                fetchRequest.predicate = NSPredicate(format: "subscription == %@", argumentArray: [detailItem])
+                do {
+                    items = try moc.executeFetchRequest(fetchRequest) as! [Item]
+                    NSLog("fetchItems: \(items)")
+                } catch {
+                    fatalError("Failed to fetch items: \(error)")
+                }
+            }
+            
             // Update the view.
+            NSLog("detailItem.items: \(detailItem.items)")
+            detailItem.managedObjectContext?.refreshObject(detailItem, mergeChanges: true)
             self.configureView()
         }
     }
+    
+    var items: [Item] = []
 
     func configureView() {
         // Update the user interface for the detail item.
@@ -27,7 +45,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             if let label = self.detailDescriptionLabel {
                 label.text = detail.valueForKey("title")!.description
             }
-//            tableView.reloadData()
         }
     }
 
@@ -53,14 +70,13 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: UITableViewDataSource
 
     func itemAtIndex(indexPath: NSIndexPath) -> Item {
-        return detailItem.items!.objectAtIndex(indexPath.indexAtPosition(indexPath.length - 1)) as! Item
+        NSLog("index: \(indexPath.row)/\(items.count)")
+        return items[indexPath.row]
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if detailItem == nil {
-            return 0
-        }
-        return detailItem.items?.count ?? 0
+        NSLog("items.count: \(items.count)")
+        return items.count
     }
     
     var _cell: UITableViewCell!

@@ -21,8 +21,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        emailTextField.text = UserSession.instance.account.userName
-        passwordTextField.text = UserSession.instance.account.password
+        emailTextField.text = UserSession.instance.userName
+//        passwordTextField.text = UserSession.instance.password
     }
     
     func initUserSession() {

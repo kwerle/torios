@@ -31,7 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     }
 
     func initializeUserSession() {
-        _ = UserSession(urls: OldReaderURLs())
+        let userSession = UserSession(urls: OldReaderURLs())
+        userSession.autoLogin()
     }
 
     func applicationWillResignActive(application: UIApplication) {

@@ -108,7 +108,7 @@ class SubscriptionsController {
         Alamofire.request(.GET, url, headers: headers).validate().response { (request, response, data, error) -> Void in
             let json = JSON(data: data!)
             for (key,itemJSON):(String, JSON) in json["items"] {
-//                NSLog("itemJSON: \(itemJSON)")
+                NSLog("itemJSON: \(itemJSON)")
                 if let subscription = Subscription.withId(moc: self.managedObjectContext, id: itemJSON["origin"]["streamId"].stringValue) {
                     let itemData = ItemData(
                         crawlTimeMsec: itemJSON["crawlTimeMsec"].stringValue,
@@ -123,12 +123,20 @@ class SubscriptionsController {
                         subscription: subscription
                     )
                     let i = Item.findOrCreate(moc: self.managedObjectContext, itemData: itemData)
-//                    NSLog("Item: \(i.title) for \(i.subscription!.title)")
+                    NSLog("Item: \(i.title) for \(i.subscription!.title)")
+                    NSLog("sub: \(subscription)")
+                    NSLog("item: \(i)")
+                    NSLog("item.subscription: \(i.subscription)")
+                    NSLog("items: \(subscription.items)")
                 } else {
                     let key = itemJSON["origin"]["streamId"]
                     NSLog("Could not find sub for \(key)")
                 }
-//                try! self.managedObjectContext.save()
+            }
+            do {
+                try self.managedObjectContext.save()
+            } catch {
+                NSLog("Bummer")
             }
         }
     }
