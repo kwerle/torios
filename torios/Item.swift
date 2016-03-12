@@ -48,7 +48,7 @@ class Item: NSManagedObject {
 //        item.likingUsersCount = itemData.likingUsersCount
         item.subscription = itemData.subscription
 
-//        try! moc.save()
+//        try! moc.save() // Why don't we save?
         return item
     }
     

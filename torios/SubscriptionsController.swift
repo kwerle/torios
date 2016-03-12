@@ -54,14 +54,17 @@ class SubscriptionsController {
         
         Alamofire.request(.GET, url, headers: headers).validate().response { (request, response, data, error) -> Void in
             let json = JSON(data: data!)
-            for (key,subscriptionJSON):(String, JSON) in json["subscriptions"] {
+            NSLog("subscription JSON: \(json)")
+            for (key, subscriptionJSON):(String, JSON) in json["subscriptions"] {
                 let subscriptionData = SubscriptionData(htmlUrl: subscriptionJSON["htmlUrl"].stringValue,
                     url: subscriptionJSON["url"].stringValue,
                     sortid: subscriptionJSON["sortid"].stringValue,
                     firstitemmsec: subscriptionJSON["firstitemmsec"].stringValue,
                     title: subscriptionJSON["title"].stringValue,
                     id: subscriptionJSON["id"].stringValue,
-                    iconUrl: subscriptionJSON["iconUrl"].stringValue)
+                    iconUrl: subscriptionJSON["iconUrl"].stringValue,
+                    unreadCount: subscriptionJSON["unreadCount"].intValue
+                )
                 let s = Subscription.findOrCreate(moc: self.managedObjectContext, subscriptionData: subscriptionData)
 //                NSLog("sub: \(s)")
             }
@@ -79,7 +82,7 @@ class SubscriptionsController {
             let json = JSON(data: data!)
             for (key,countJSON):(String, JSON) in json["unreadcounts"] {
 //                NSLog("itemJSON: \(countJSON)")
-                if let subscription = Subscription.withId(moc: self.managedObjectContext, id: countJSON["id"].stringValue) {
+                if let subscription = Subscription.withId(moc: self.managedObjectContext, subscriptionId: countJSON["id"].stringValue) {
                     subscription.unreadCount = countJSON["count"].numberValue
                     try! self.managedObjectContext.save()
                 }
@@ -109,7 +112,7 @@ class SubscriptionsController {
             let json = JSON(data: data!)
             for (key,itemJSON):(String, JSON) in json["items"] {
                 NSLog("itemJSON: \(itemJSON)")
-                if let subscription = Subscription.withId(moc: self.managedObjectContext, id: itemJSON["origin"]["streamId"].stringValue) {
+                if let subscription = Subscription.withId(moc: self.managedObjectContext, subscriptionId: itemJSON["origin"]["streamId"].stringValue) {
                     let itemData = ItemData(
                         crawlTimeMsec: itemJSON["crawlTimeMsec"].stringValue,
                         timestampUsec: itemJSON["timestampUsec"].stringValue,

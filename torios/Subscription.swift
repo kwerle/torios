@@ -8,19 +8,20 @@
 
 import Foundation
 import CoreData
+import Alamofire
 
 class Subscription: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
 
-    class func withId(moc moc: NSManagedObjectContext, id: String) -> Subscription? {
+    class func withId(moc moc: NSManagedObjectContext, subscriptionId: String) -> Subscription? {
         let fetchRequest = NSFetchRequest(entityName: "Subscription")
-        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        fetchRequest.predicate = NSPredicate(format: "id == %@", subscriptionId)
 
         do {
             let subscriptions = try moc.executeFetchRequest(fetchRequest) as! [Subscription]
             if subscriptions.count > 0 {
-                return subscriptions[0]
+                return subscriptions.first
             }
         } catch {
             fatalError("Failed to fetch subscriptions: \(error)")
@@ -29,10 +30,7 @@ class Subscription: NSManagedObject {
     }
 
     class func findOrCreate(moc moc: NSManagedObjectContext, subscriptionData: SubscriptionData) -> Subscription {
-        if let existing = withId(moc: moc, id: subscriptionData.id) {
-            return existing
-        }
-        let subscription = NSEntityDescription.insertNewObjectForEntityForName("Subscription", inManagedObjectContext: moc) as! Subscription
+        let subscription = withId(moc: moc, subscriptionId: subscriptionData.id) ?? NSEntityDescription.insertNewObjectForEntityForName("Subscription", inManagedObjectContext: moc) as! Subscription
         subscription.htmlUrl = subscriptionData.htmlUrl
         subscription.url = subscriptionData.url
         subscription.sortid = subscriptionData.sortid
@@ -40,9 +38,10 @@ class Subscription: NSManagedObject {
         subscription.title = subscriptionData.title
         subscription.id = subscriptionData.id
         subscription.iconUrl = subscriptionData.iconUrl
-//        try! moc.save()
+        subscription.unreadCount = subscriptionData.unreadCount
         return subscription
     }
+
 
 }
 
@@ -69,6 +68,7 @@ struct SubscriptionData {
     let title:         String
     let id:            String
     let iconUrl:       String
+    let unreadCount:   Int
     //    "categories" : [
     //
     //    ],

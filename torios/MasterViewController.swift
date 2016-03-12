@@ -154,9 +154,11 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Subscription
         if object.unreadCount?.integerValue > 0 {
-            cell.textLabel!.text = "\(object.title!) (\(object.unreadCount!))"
+            cell.textLabel!.text = object.title
+            cell.detailTextLabel?.text = "\(object.unreadCount!)"
         } else {
             cell.textLabel!.text = object.title
+            cell.detailTextLabel?.text = ""
         }
     }
 
