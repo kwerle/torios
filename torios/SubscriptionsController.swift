@@ -40,17 +40,7 @@ class SubscriptionsController {
         
         //        Clear out old subscriptions - they may have been deleted elsewhere
         let fetchRequest = NSFetchRequest(entityName: "Subscription")
-        do {
-            let subscriptions = try self.managedObjectContext.executeFetchRequest(fetchRequest) as! [Subscription]
-            for s in subscriptions {
-//                NSLog("deleteObject")
-                self.managedObjectContext.deleteObject(s)
-            }
-            NSLog("deleting subs")
-//            try! self.managedObjectContext.save()
-        } catch {
-            fatalError("Failed to fetch subscriptions: \(error)")
-        }
+        var subscriptionsToDelete = try! self.managedObjectContext.executeFetchRequest(fetchRequest) as? [Subscription] ?? [Subscription]()
         
         Alamofire.request(.GET, url, headers: headers).validate().response { (request, response, data, error) -> Void in
             let json = JSON(data: data!)
@@ -66,12 +56,20 @@ class SubscriptionsController {
                     unreadCount: subscriptionJSON["unreadCount"].intValue
                 )
                 let s = Subscription.findOrCreate(moc: self.managedObjectContext, subscriptionData: subscriptionData)
+                subscriptionsToDelete = subscriptionsToDelete.filter({ $0.id != s.id })
 //                NSLog("sub: \(s)")
             }
+            for subscription in subscriptionsToDelete {
+                self.managedObjectContext.deleteObject(subscription)
+            }
+            self.fetchCounts()
             NSLog("saving subs")
             try! self.managedObjectContext.save()
-            self.fetchCounts()
-            self.fetchUnreadItems()
+            
+            let subscriptions = try! self.managedObjectContext.executeFetchRequest(fetchRequest) as? [Subscription] ?? [Subscription]()
+            for subscription in subscriptions {
+                self.fetchUnreadItems(subscription)
+            }
         }
     }
     
@@ -89,28 +87,16 @@ class SubscriptionsController {
             }
         }
     }
+    
+    // MARK: - Items
 
-    func fetchUnreadItems() {
+    func fetchUnreadItems(subscription: Subscription) {
         // GET https://theoldreader.com/reader/api/0/unread-count?output=json
-        let url = "https://theoldreader.com/reader/api/0/stream/contents?output=json&s=user/-/state/com.google/reading-list&xt=user/-/state/com.google/read"
-
-
-//        We should clear out old read items.
-
-//        let fetchRequest = NSFetchRequest(entityName: "Item")
-//        do {
-//            let subscriptions = try managedObjectContext.executeFetchRequest(fetchRequest) as! [Subscription]
-//            for s in subscriptions {
-//                managedObjectContext.deleteObject(s)
-//            }
-//        } catch {
-//            fatalError("Failed to fetch subscriptions: \(error)")
-//        }
-
+        let url = "https://theoldreader.com/reader/api/0/stream/contents?output=json&s=user/-/state/com.google/reading-list&xt=user/-/state/com.google/read&s=\(subscription.id)"
 
         Alamofire.request(.GET, url, headers: headers).validate().response { (request, response, data, error) -> Void in
             let json = JSON(data: data!)
-            for (key,itemJSON):(String, JSON) in json["items"] {
+            for (key, itemJSON):(String, JSON) in json["items"] {
                 NSLog("itemJSON: \(itemJSON)")
                 if let subscription = Subscription.withId(moc: self.managedObjectContext, subscriptionId: itemJSON["origin"]["streamId"].stringValue) {
                     let itemData = ItemData(

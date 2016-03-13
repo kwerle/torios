@@ -17,7 +17,7 @@ extension Subscription {
     @NSManaged var firstitemmsec: String?
     @NSManaged var htmlUrl: String?
     @NSManaged var iconUrl: String?
-    @NSManaged var id: String?
+    @NSManaged var id: String!
     @NSManaged var sortid: String?
     @NSManaged var timeStamp: NSDate?
     @NSManaged var title: String?

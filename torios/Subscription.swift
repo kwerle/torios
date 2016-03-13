@@ -42,7 +42,21 @@ class Subscription: NSManagedObject {
         return subscription
     }
 
-
+    func currentItems() -> [Item] {
+        if let moc = managedObjectContext {
+            //                let entity = NSEntityDescription.entityForName("Item", inManagedObjectContext: moc)
+            let fetchRequest = NSFetchRequest(entityName: "Item")
+            fetchRequest.predicate = NSPredicate(format: "subscription == %@", argumentArray: [self])
+            do {
+                return try moc.executeFetchRequest(fetchRequest) as! [Item]
+                NSLog("fetchItems: \(items)")
+            } catch {
+                fatalError("Failed to fetch items: \(error)")
+            }
+        }
+        return []
+    }
+    
 }
 
 

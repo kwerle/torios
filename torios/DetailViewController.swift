@@ -18,17 +18,17 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var detailItem: Subscription! {
         didSet {
             
-            if let moc = detailItem.managedObjectContext {
-//                let entity = NSEntityDescription.entityForName("Item", inManagedObjectContext: moc)
-                let fetchRequest = NSFetchRequest(entityName: "Item")
-                fetchRequest.predicate = NSPredicate(format: "subscription == %@", argumentArray: [detailItem])
-                do {
-                    items = try moc.executeFetchRequest(fetchRequest) as! [Item]
-                    NSLog("fetchItems: \(items)")
-                } catch {
-                    fatalError("Failed to fetch items: \(error)")
-                }
-            }
+//            if let moc = detailItem.managedObjectContext {
+////                let entity = NSEntityDescription.entityForName("Item", inManagedObjectContext: moc)
+//                let fetchRequest = NSFetchRequest(entityName: "Item")
+//                fetchRequest.predicate = NSPredicate(format: "subscription == %@", argumentArray: [detailItem])
+//                do {
+//                    items = try moc.executeFetchRequest(fetchRequest) as! [Item]
+//                    NSLog("fetchItems: \(items)")
+//                } catch {
+//                    fatalError("Failed to fetch items: \(error)")
+//                }
+//            }
             
             // Update the view.
             NSLog("detailItem.items: \(detailItem.items)")
@@ -37,7 +37,15 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    var items: [Item] = []
+    private var _items: [Item]!
+    private var items: [Item] {
+        get {
+            if _items == nil {
+                _items = detailItem.currentItems()
+            }
+            return _items
+        }
+    }
 
     func configureView() {
         // Update the user interface for the detail item.
